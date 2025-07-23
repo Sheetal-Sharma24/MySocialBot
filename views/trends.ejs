@@ -1,0 +1,18 @@
+<%- include('partials/header') %>
+<h2>Recent Trends</h2>
+<ul>
+  <% trends.forEach(trend => { %>
+    <li>
+      <b>#<%= trend.hashtag %></b> (ID: <%= trend.hashtagId %>)
+      <ul>
+        <% trend.posts.forEach(post => { %>
+          <li>
+            <img src="<%= post.media_url %>" width="100"/>
+            <p><%= post.caption %></p>
+          </li>
+        <% }) %>
+      </ul>
+    </li>
+  <% }) %>
+</ul>
+<%- include('partials/footer') %>

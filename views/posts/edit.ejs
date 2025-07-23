@@ -1,0 +1,14 @@
+<% if (messages.success) { %>
+  <div class="alert alert-success"><%= messages.success %></div>
+<% } %>
+<% if (messages.error) { %>
+  <div class="alert alert-danger"><%= messages.error %></div>
+<% } %>
+
+<h1>Edit Post</h1>
+<form method="POST">
+  <input name="text" value="<%= post.text %>" required />
+  <input name="imageUrl" value="<%= post.imageUrl %>" required />
+  <input type="datetime-local" name="scheduledAt" value="<%= post.scheduledAt.toISOString().slice(0,16) %>" required />
+  <button type="submit">Update</button>
+</form>

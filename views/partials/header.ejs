@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Social Media Bot</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <% if (success_msg) { %>
+    <p class="success"><%= success_msg %></p>
+  <% } %>
+  <% if (error_msg) { %>
+    <p class="error"><%= error_msg %></p>
+  <% } %>
+  <% if (error) { %>
+    <p class="error"><%= error %></p>
+  <% } %>

@@ -1,0 +1,26 @@
+<% if (messages.success) { %>
+  <div class="alert alert-success"><%= messages.success %></div>
+<% } %>
+<% if (messages.error) { %>
+  <div class="alert alert-danger"><%= messages.error %></div>
+<% } %>
+
+<h1>All Posts</h1>
+<a href="/posts/new">➕ New</a>
+<table>
+<tr><th>Text</th><th>Image</th><th>Time</th><th>Posted</th><th>Actions</th></tr>
+<% posts.forEach(p => { %>
+<tr>
+  <td><%= p.text %></td>
+  <td><img src="<%= p.imageUrl %>" width="50" /></td>
+  <td><%= p.scheduledAt.toLocaleString() %></td>
+  <td><%= p.posted %></td>
+  <td>
+    <a href="/posts/edit/<%= p._id %>">✏ Edit</a>
+    <form method="POST" action="/posts/delete/<%= p._id %>" style="display:inline">
+      <button>🗑 Delete</button>
+    </form>
+  </td>
+</tr>
+<% }) %>
+</table>

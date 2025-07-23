@@ -1,0 +1,14 @@
+<h1>📄 Logs</h1>
+<table>
+  <tr>
+    <th>Post ID</th><th>Status</th><th>Time</th><th>Error</th>
+  </tr>
+  <% logs.forEach(log => { %>
+    <tr>
+      <td><%= log.postId %></td>
+      <td><%= log.status %></td>
+      <td><%= log.timestamp.toLocaleString() %></td>
+      <td><%= log.error ? log.error : '-' %></td>
+    </tr>
+  <% }) %>
+</table>

@@ -1,0 +1,52 @@
+<%- include('partials/header') %>
+
+<h2>Welcome, <%= user.name %>!</h2>
+<p>Email: <%= user.email %></p>
+
+<a href="/auth/logout">Logout</a>
+
+<hr>
+
+<h3> Dashboard Summary</h3>
+<ul>
+  <li>Total posts: <%= totalPosts %></li>
+  <li>Posted successfully: <%= postedCount %></li>
+  <li>Failed posts: <%= failedCount %></li>
+</ul>
+
+<h3> Posting Activity</h3>
+<canvas id="chart" width="400" height="200"></canvas>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  const logs = <%- JSON.stringify(logs || []) %>;
+
+  // Group logs by date
+  const counts = {};
+  logs.forEach(log => {
+    const date = new Date(log.timestamp).toLocaleDateString();
+    counts[date] = (counts[date] || 0) + 1;
+  });
+
+  const labels = Object.keys(counts);
+  const data = Object.values(counts);
+
+  new Chart(document.getElementById('chart'), {
+    type: 'bar',
+    data: {
+      labels: labels,
+      datasets: [{
+        label: 'Number of posts per day',
+        data: data,
+        backgroundColor: '#4CAF50'
+      }]
+    },
+    options: {
+      scales: {
+        y: { beginAtZero: true }
+      }
+    }
+  });
+</script>
+
+<%- include('partials/footer') %>
